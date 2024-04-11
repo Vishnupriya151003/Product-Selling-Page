@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="Logo.png">
+    <title>Buy Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        
+        header {
+            background-color: #00308F;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        header a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+        }
+
+        .content {
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .section {
+            width: 45%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        #product-details {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #product-details img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        #user-details {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #user-details form {
+            text-align: left;
+        }
+ #user-details form input[type="text"],
+        #user-details form input[type="email"],
+        #user-details form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+
+        .button {
+            background-color: #00308F;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="Logo.png" alt="Logo" width="100">
+        </div>
+        <div>
+            <a href="contact.html">Contact Us</a>
+            <a href="index.html">Login</a>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="section" id="product-details">
+            <h1>Buy Product</h1>
+            <img src="" alt="Product Image" id="product-image">
+            <h2 id="product-name"></h2>
+            <p id="product-quantity"></p>
+            <p id="product-price"></p>
+            <button class="button" onclick="confirmPurchase()">Confirm Purchase</button>
+            <button class="button" onclick="cancelPurchase()">Cancel</button>
+        </div>
+
+        <div class="section" id="user-details">
+            <h2>User Details</h2>
+            <p>Thanks for confirming the purchase. Please enter your shipping details:</p>
+            <form onsubmit="return false;">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Enter your name"><br>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email"><br>
+
+                <label for="phone">Phone No:</label>
+                <input type="text" id="phone" placeholder="Enter your phone number"><br>
+
+                <label for="alt-phone">Alternate Phone No:</label>
+                <input type="text" id="alt-phone" placeholder="Enter alternate phone number"><br>
+
+                <label for="address">Address:</label>
+                <textarea id="address" rows="4" placeholder="Enter your address"></textarea><br>
+
+                <button class="button" onclick="submitDetails()">Submit</button>
+                <button class="button" onclick="clearFields()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Extract product details from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const productName = urlParams.get('product');
+        const quantity = urlParams.get('quantity');
+        const imageUrl = urlParams.get('image');
+
+        // Set product details dynamically
+        document.getElementById('product-name').textContent = productName;
+        document.getElementById('product-quantity').textContent = `Quantity: ${quantity}`;
+        document.getElementById('product-image').src = imageUrl;
+
+        function confirmPurchase() {
+            var price = Math.floor(Math.random() * (400 - 200 + 1)) + 200; // Random price calculation
+            document.getElementById('product-price').textContent = `Price: $${price}`;
+            document.getElementById('user-details').style.display = 'block';
+        }
+
+        function cancelPurchase() {
+            if (confirm("Do you really want to cancel?")) {
+                window.location.href = "details.html";
+            }
+        }
+
+        function submitDetails() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var altPhone = document.getElementById('alt-phone').value;
+            var address = document.getElementById('address').value;
+            if (name.trim() === '' || email.trim() === '' || phone.trim() === '' || address.trim() === '') {
+        alert("Please fill out all required fields.");
+        return; // Exit function if any required field is empty
+    }
+            // Here you can process the user details (e.g., send to server)
+            alert("Purchase successful!" + name + "\nYour order will be delivered in few days and COD is applied.");
+            clearFields();
+window.location.href = "details.html";
+        }
+
+        function clearFields() {
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('user-details').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

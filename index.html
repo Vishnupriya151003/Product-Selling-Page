@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="icon" href="Logo.png">
+<title>
+	Home
+</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+	    background-color: #cfe2f3; 
+        }
+        
+        header {
+            background-color: #00308F;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        header a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .section {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+	    width: 45%;
+	    background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+		
+        }
+
+         #userSection {
+            background-color: white;
+            color: black;
+		
+        }
+
+        .button {
+            background-color: #00308F;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+<script>
+        function checkLogin() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Check the username and password
+            if (username === 'User' && password === 'Login@123') {
+                // Redirect to 'details.html'
+                window.location.href = 'details.html';
+            } else {
+                alert('Invalid username or password. Please try again.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="Logo.png" alt="Logo" width="100">
+        </div>
+        <div>
+            <a href="contact.html">Contact Us</a>
+            <a href="index.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+        </div>
+    </header>
+
+    <div class="content">
+     
+        <div class="section" id="userSection">
+	    <center>
+            	<h2>Welcome to the Infuza Company Official Page</h2>
+		<hr style="height:3px;background-color:#00308F;">
+		<h1>LOGIN</h1>
+		<hr style="height:3px;background-color:#00308F;"><br>
+		<table>
+		<tr>
+		<td>Username:</td>
+		<td><input type="text" id="username" name="username" required></td>
+		</tr>	
+		<tr>
+		<td>&nbsp;</td>
+		</tr>
+		<tr>
+		<td>Password:</td>
+		<td><input type="password" id="password" name="password" required></td>
+		</tr>
+		</table><br>
+            	<input class="button" type="button" value="Login" onclick="checkLogin()"><br><br>
+		Don't have an account?
+            <a href="signup.html">Sign Up</a></center>
+	    
+        </div>
+    </div>
+</body>
+</html>
